@@ -71,11 +71,10 @@ function benchFn(css, done) {
 		.then((result) => {
 			if (firstTime) {
 				firstTime = false;
-				result.messages
-					.filter((m) => m.stylelintType === 'invalidOption')
-					.forEach((m) => {
-						console.log(bold(yellow(`>> ${m.text}`)));
-					});
+				for (const m of result.messages.filter((m) => m.stylelintType === 'invalidOption')) {
+					console.log(bold(yellow(`>> ${m.text}`)));
+				}
+
 				console.log(`${bold('Warnings')}: ${result.warnings().length}`);
 			}
 
